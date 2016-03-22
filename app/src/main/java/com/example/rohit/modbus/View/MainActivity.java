@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.rohit.modbus.Data.EndPoint;
 import com.example.rohit.modbus.Data.ListAdapter;
@@ -92,10 +93,16 @@ public class MainActivity extends AppCompatActivity {
                 writeBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        RegisterValue reg = new RegisterValue(Integer.parseInt(regId.getText().toString()), Integer.parseInt(regVal.getText().toString()));
-                        ArrayList<RegisterValue> regs = new ArrayList<RegisterValue>();
-                        head.write(reg);
-                        dialog.dismiss();
+                        try{
+                            RegisterValue reg = new RegisterValue(Integer.parseInt(regId.getText().toString()), Integer.parseInt(regVal.getText().toString()));
+                            ArrayList<RegisterValue> regs = new ArrayList<RegisterValue>();
+                            head.write(reg);
+                            dialog.dismiss();
+                        }catch(Exception e){
+                            e.printStackTrace();
+                            Toast.makeText(getApplicationContext(),e.getMessage(),Toast.LENGTH_LONG).show();
+                        }
+
                     }
                 });
 

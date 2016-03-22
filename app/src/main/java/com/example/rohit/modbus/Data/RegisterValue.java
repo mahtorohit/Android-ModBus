@@ -9,20 +9,20 @@ import android.os.Parcelable;
  */
 public class RegisterValue implements Parcelable {
     private int regId;
-    private float regValue;
+    private int regValue;
 
     /**
      * @param regId    register Id
      * @param regValue register value
      */
-    public RegisterValue(int regId, float regValue) {
+    public RegisterValue(int regId, int regValue) {
         this.regId = regId;
         this.regValue = regValue;
     }
 
     protected RegisterValue(Parcel in) {
         regId = in.readInt();
-        regValue = in.readFloat();
+        regValue = in.readInt();
     }
 
     public static final Creator<RegisterValue> CREATOR = new Creator<RegisterValue>() {
@@ -41,7 +41,7 @@ public class RegisterValue implements Parcelable {
         return regValue;
     }
 
-    public void setRegValue(float regValue) {
+    public void setRegValue(int regValue) {
         this.regValue = regValue;
     }
 
